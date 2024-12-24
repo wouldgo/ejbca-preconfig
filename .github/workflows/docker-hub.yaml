@@ -30,7 +30,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: 1.0.0-8.3.2
+          tags: 1.0.1-8.2.0.1
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2

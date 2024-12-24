@@ -1,4 +1,4 @@
-FROM keyfactor/ejbca-ce:8.3.2
+FROM keyfactor/ejbca-ce:8.2.0.1
 
 WORKDIR /config
 
