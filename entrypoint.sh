@@ -212,6 +212,10 @@ function do_it () {
   #   MNGT USER   #
   #################
   if ! "${K}" -n "${NAMESPACE}" get secret ejbca-rest-api-secret >/dev/null 2>&1; then
+    echo "####################################################"
+    echo "Secret containing keystore and truststore not found in namespace ${NAMESPACE}, creating it..."
+    echo "####################################################"
+
     "${EJBCA_SH}" ra addendentity \
       --username "${MANAGEMENT_END_ENTITY_USERNAME}" \
       --dn "CN=${MANAGEMENT_END_ENTITY_USERNAME}" \
@@ -235,7 +239,9 @@ function do_it () {
 
     "${EJBCA_SH}" ra setclearpwd \
       "${MANAGEMENT_END_ENTITY_USERNAME}" "${MANAGEMENT_END_ENTITY_PASSWORD}"
-
+    
+    mkdir -p /opt/keyfactor/p12
+    
     "${EJBCA_SH}" batch \
       "${MANAGEMENT_END_ENTITY_USERNAME}"
 
