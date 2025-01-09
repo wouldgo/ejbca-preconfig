@@ -86,7 +86,7 @@ function do_it () {
 
   "${EJBCA_SH}" ca importprofiles /opt/keyfactor/import/profiles
 
-  MANAGEMENTCA_ID="${EJBCA_SH}" ca info ManagementCA | grep "CA ID" | sed 's/.*CA ID: //'
+  MANAGEMENTCA_ID=$("${EJBCA_SH}" ca info ManagementCA | grep "CA ID" | sed 's/.*CA ID: //')
 
   echo "Management CA Identifier"
   echo "${MANAGEMENTCA_ID}"
@@ -239,9 +239,9 @@ function do_it () {
 
     "${EJBCA_SH}" ra setclearpwd \
       "${MANAGEMENT_END_ENTITY_USERNAME}" "${MANAGEMENT_END_ENTITY_PASSWORD}"
-    
+
     mkdir -p /opt/keyfactor/p12
-    
+
     "${EJBCA_SH}" batch \
       "${MANAGEMENT_END_ENTITY_USERNAME}"
 
